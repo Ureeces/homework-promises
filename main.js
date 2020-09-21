@@ -24,17 +24,36 @@ compareToTen(randomNum)
 
 //2.
 // create a global variable called order. It will hold a string with whatever drink you want to order, for example, a 'Slurpy'
+let order = 'Slurpy';
+
 //create a promise called drink
-// inside your promise:
-// first log 'I'll be right back with your <order variable>'.
-// next create another boolean variable, orderCannotBeFilled. Set it to false
-// when order is orderCannotBeFilled is true, promise should reject after 2 seconds with a message,
-// 'Sorry we are all out of <whatever the order is>' (not hard coded order)
-// otherwise resolve the order after 4 seconds saying 'Server returns: 'Here is your <whatever the order is>'
+let drink = new Promise((resolve, reject) => {
+  // inside your promise:
+  // first log 'I'll be right back with your <order variable>'.
+  console.log(`I'll be right back with your order ${order}`);
+  
+  // next create another boolean variable, orderCannotBeFilled. Set it to false
+  let orderCannotBeFilled = true;
+  
+  // when order is orderCannotBeFilled is true, promise should reject after 2 seconds with a message,
+  if(orderCannotBeFilled) {
+    // 'Sorry we are all out of <whatever the order is>' (not hard coded order)
+    reject(`Sorry we are all out of ${order}`);
+  }
+
+  // otherwise resolve the order after 4 seconds saying 'Server returns: 'Here is your <whatever the order is>'
+  resolve(`Server returns: Here is your ${order}`);
+})
 
 // Now consume the promise
+drink
 // When the order resolves, it should log 'Server Returns:' and the resolve message.
-// Handle the catch. It should log 'Sorry we are all out of <whatever the order is>'
+  .then((message) => {
+    console.log('Server Returns:');
+    console.log(message)
+  })
+  // Handle the catch. It should log 'Sorry we are all out of <whatever the order is>'
+  .catch((message) => console.log(message))
 
 // Test by changing the value of orderCannotBeFilled between true and false
 
