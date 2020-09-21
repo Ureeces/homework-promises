@@ -1,9 +1,26 @@
 //1:
 //Write a function compareToTen that takes a number, num as an argument and returns a Promise that tests if the value of num is less than or greater than the value 10.
-// if number is greater or equal it should resolve  with a string and log for example, if num = 20 it should say '20 is greater than or equal to 10, resolved!'
-// if num is less than 10 then it should reject and log for example '5 is less than 10, error!'
+let compareToTen = (num) => {
+  return new Promise((resolve, reject) => {
+    // if number is greater or equal it should resolve  with a string and log for example, if num = 20 it should say '20 is greater than or equal to 10, resolved!'
+    if(num >= 10) {
+      resolve(num);
+    }
+    // if num is less than 10 then it should reject and log for example '5 is less than 10, error!'
+    reject(num);
+  });
+}
+
 // create a variable randomNum that creates a random number between 1 and 20
+let randomNum = Math.floor((Math.random() * 20) + 1);
 // use it as your argument to invoke your compareToTen function
+compareToTen(randomNum)
+  .then((num) => {
+    console.log(`${num} is greater than or equal to 10, resolved!`);
+  })
+  .catch((num) => {
+    console.log(`${num} is less than 10, error!`);
+  })
 
 //2.
 // create a global variable called order. It will hold a string with whatever drink you want to order, for example, a 'Slurpy'
